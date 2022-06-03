@@ -58,6 +58,7 @@ func TestShutterTransactionCoding(t *testing.T) {
 					ChainID:          big.NewInt(1),
 					Nonce:            nonce,
 					BatchIndex:       j,
+					L1BlockNumber:    555,
 					Gas:              123457,
 					GasTipCap:        big.NewInt(10),
 					GasFeeCap:        big.NewInt(10),
