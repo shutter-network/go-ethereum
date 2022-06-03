@@ -79,7 +79,7 @@ func (tx *ShutterTx) to() *common.Address      { return nil }
 func (tx *ShutterTx) encryptedPayload() []byte { return tx.EncryptedPayload }
 func (tx *ShutterTx) decryptionKey() []byte    { return nil }
 func (tx *ShutterTx) batchIndex() uint64       { return tx.BatchIndex }
-func (tx *ShutterTx) l1BlockNumber() *big.Int  { return nil }
+func (tx *ShutterTx) l1BlockNumber() uint64    { return 0 }
 func (tx *ShutterTx) timestamp() *big.Int      { return nil }
 func (tx *ShutterTx) transactions() [][]byte   { return nil }
 
