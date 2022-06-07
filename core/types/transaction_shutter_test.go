@@ -28,7 +28,6 @@ func assertNilErr(t *testing.T, err error, message string) {
 			t.Fatalf("%s: %v", message, err)
 		}
 	}
-
 }
 
 // TestTransactionCoding tests serializing/de-serializing to/from rlp and JSON.
@@ -59,6 +58,7 @@ func TestShutterTransactionCoding(t *testing.T) {
 					ChainID:          big.NewInt(1),
 					Nonce:            nonce,
 					BatchIndex:       j,
+					L1BlockNumber:    555,
 					Gas:              123457,
 					GasTipCap:        big.NewInt(10),
 					GasFeeCap:        big.NewInt(10),
@@ -90,7 +90,7 @@ func TestShutterTransactionCoding(t *testing.T) {
 			ChainID:       big.NewInt(1),
 			DecryptionKey: decryptionKey,
 			BatchIndex:    j,
-			L1BlockNumber: big.NewInt(42),
+			L1BlockNumber: 42,
 			Timestamp:     big.NewInt(now),
 			Transactions:  transactionsBytes,
 		}
@@ -107,7 +107,7 @@ func TestShutterTransactionCoding(t *testing.T) {
 
 		// Now check equality of nested tx's
 		for i, data := range parsedTx.Transactions() {
-			var parsedTx = &Transaction{}
+			parsedTx := &Transaction{}
 			err := parsedTx.UnmarshalBinary(data)
 			assertNilErr(t, err, "rlp decoding of nested transaction failed")
 			tx := transactions[i]
@@ -120,5 +120,4 @@ func TestShutterTransactionCoding(t *testing.T) {
 			assertAddress(t, signer, addr, parsedTx)
 		}
 	}
-
 }
