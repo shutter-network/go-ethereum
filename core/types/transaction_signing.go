@@ -326,6 +326,7 @@ func (s eip2930Signer) Hash(tx *Transaction) common.Hash {
 			[]interface{}{
 				s.chainId,
 				tx.BatchIndex(),
+				tx.L1BlockNumber(),
 				tx.Nonce(),
 				tx.GasTipCap(),
 				tx.GasFeeCap(),
@@ -338,7 +339,6 @@ func (s eip2930Signer) Hash(tx *Transaction) common.Hash {
 			[]interface{}{
 				s.chainId,
 				tx.BatchIndex(),
-				tx.DecryptionKey(),
 				tx.L1BlockNumber(),
 				tx.Timestamp(),
 				tx.Transactions(),
